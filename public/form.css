@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+	font-family: 'Actor'
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: dodgerblue;
+	height: 200px;
+	overflow: visible;
+	flex-direction: column;
+	/*padding: 0px 0px;*/
+	/*max-width: 1100px;*/
+	margin: auto;
+}
+
+.form-element {
+	text-align: left;
+	width: 100%;
+	border: none;
+	/*padding: 10px 0;*/
+	border: blue;
+	/*margin: 10px 5px;*/
+	margin-bottom: 30px;
+	/*border-radius: 20px;*/
+}
+
+.element {
+	/*display: flex;*/
+	/*width: 100%;*/
+	/*flex-direction: column;*/
+}
+
+.form-element:hover {
+	color: blue;
+}
+
+/*.form-element:focus {
+	color: blue;
+	outline-width: 0
+}*/
+
+.form {
+	position: relative;
+	padding: 40px;
+	z-index: 100;
+}
+
+.form input:focus {
+	outline: none;
+}
+
+.form input[type='text'],
+.form input[type='file'] {
+	border: 0;
+	border-bottom: 1px solid #b4becb;
+	width: 100%;
+	padding: 3px;
+	font-size: 16px;
+}
+
+
+.forms-container {
+	width: 400px;
+	/*height: 400px;*/
+	border-radius: 20px;
+	position: absolute;
+	top: 200px;
+	background-color: white;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.img-ico {
+	background-color: dodgerblue;
+	border-radius: 150px;
+	padding: 0;
+	margin-bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ig {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*overflow: hidden;*/
+	/*border-radius: 15px;*/
+	padding: 20px;
+}
+
+/*.grid {
+	display: grid;
+  	grid-template-columns: repeat(2, 1fr);
+  	gap: 20px;
+  	justify-content: center;
+  	align-items: center;
+  	height: 100%;
+}*/
+
+.info {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	/*background-color: red;*/
+	position: relative;
+	width: 100%;
+	height: 250px;
+}
+
+.info::before,
+.info::after {
+	content: '';
+	position: absolute;
+	height: 150px;
+	bottom: -100px;
+	right: 0;
+	left: 0;
+	background: dodgerblue;
+	transform: skewY(-3deg);
+}
+
+.submit {
+	border: none;
+	display: flex;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin: 25px 0;
+	font-size: 20px;
+	background-color: dodgerblue;
+	border-radius: 5px;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*background-color: red;*/
+}
+
+
+@media(max-width: 768px) {
+	/*body {
+		display: none;
+	}*/
+}
+
+@media(max-width: 500px) {
+	/*body {
+		display: none;
+	}*/
+}

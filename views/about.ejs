@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>About | EYE-D-LUGGAGE | <%= id %> </title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+	
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<div class="navbar">
+		<div class="container flex">
+			<h1 class="logo">Eye-D-Luggage</h1>	
+			<nav>
+				<ul>
+					<!-- <li><a href="/<%=id%>">Home</a></li> -->
+					<li><a href="#">About</a></li>
+					<li><a id="complaints">Contact Us</a></li>
+				</ul>
+			</nav>		
+		</div>		
+	</div>
+	<section class="showcase2">
+		<div class="container info">
+			<h1>About Oxygen Concentrators</h1>
+			<p style="text-align: center;"> <%= paraData %> </p>
+		</div>
+	</section>
+	<section class="video">
+		<div class="container">
+			<div class="video-container">
+				<div class="iframe">
+					<iframe class="vid" src="<%= video %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div class="pdf" id="pdfDiv">
+					<p>Download Instruction Manual</p>
+				</div>
+				<a href="<%= pdf %>" id="downLink" download style="display: none;">Some link</a>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		document.getElementById('complaints').addEventListener('click', e => {
+			window.location.replace('/complaints')
+		})
+	</script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+
+	<script>
+		document.getElementById('pdfDiv').addEventListener('click', e => {
+			document.getElementById('downLink').click()
+		})
+	</script>
+
+	<script>
+	// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyDXqiBHQggKFDDJQF5yJ24YJR5RI9M_UD8",
+			authDomain: "innate-might-285613.firebaseapp.com",
+			projectId: "innate-might-285613",
+			storageBucket: "gs://innate-might-285613.appspot.com",
+			messagingSenderId: "735355390056",
+			appId: "1:735355390056:web:a97d898e81477e9d5c53dd"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+
+	<script src="/about.js" ></script>
+
+	<script>
+		function func(id) {
+			const database = firebase.firestore();
+			const userCollection = database.collection('Data')
+			const query = userCollection.where("id","==",id)
+			query.get().then(snap => {
+				snap.forEach(user => console.log(user.data))
+			})
+			.catch(e => console.log(e))
+		}
+
+		// document.addEventListener("DOMContentLoaded", func())
+	</script>
+</body>
+</html>

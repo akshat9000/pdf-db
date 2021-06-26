@@ -1,0 +1,23 @@
+{
+  "name": "00covid",
+  "version": "1.0.0",
+  "description": "3 page web page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "firebase": "^8.6.8",
+    "nodemon": "^2.0.7",
+    "uuid": "^8.3.2"
+  }
+}

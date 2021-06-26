@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Home | EYE-D-LUGGAGE | <%= id %></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+	<!-- <script type="text/javascript" src="../public/form.js"></script> -->
+	<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<!-- navbar -->
+	<div class="bgcolor" id="bgcolor">
+	<div class="navbar">
+		<div class="container flex">
+			<h1 class="logo">Eye-D-Luggage</h1>	
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<!-- <li><a href="about.html">About</a></li> -->
+					<li><a id="complaints">Contact Us</a></li>
+				</ul>
+			</nav>		
+		</div>		
+	</div>
+	<!-- showcase -->
+	<div class="notif" style="text-align: center;">
+		<p><strong>Enter all the details of the form. Adding a picture is Necessary!</strong></p>
+	</div>
+	<section class="showcase">
+		<div class="container grid">
+			<div class="showcase-text">
+				<h1>Efficient Tracking of Covid Supplies</h1>
+				<p><strong>STEP 1</strong> - Scan the QR code provided on the consignment</p>
+				<p><strong>STEP 2</strong> - Select the type of Component(s)</p>
+				<p><strong>STEP 3</strong> - Enter the company (e.g. for John Smith private limited, enter "john smith")</p>
+				<p><strong>STEP 4</strong> - Click a picture of the consignment and click "submit" to register</p>
+			</div>
+
+			<div class="showcase-form card">
+				<h2>Register component</h2>
+				<form action="/<%=id%>/about" method="get">
+					<!-- <div class="form-control">
+						<input type="text" name="name" placeholder="Component Name" required>
+					</div> -->
+					<div class="form-control">
+						<label for="type" style="padding: 0 3px; font-size: 16px; font-weight: 700;">Component Type</label>
+						<select name="type" id="type" class="select-control">
+							<option value="oc">Oxygen Concentrator</option>
+							<option value="spo2">SPO2 Meter</option>
+							<option value="mask">Face Mask</option>
+							<option value="sanitizer">Sanitizers</option>
+						</select>
+					</div>
+					<div class="form-control">
+						<input type="text" id="company" name="Company" placeholder="Component Company" style="font-weight: 300;" required>
+					</div>
+					<div class="form-control">
+						<input type="text" id="quant" name="quant" placeholder="Component Quantity" style="font-weight: 300;" required>
+					</div>
+					<div class="form-control">
+						<textarea placeholder="Comments" id="comments" name="comments"></textarea>
+					</div>
+					<input type="button" id="locate" name="locate" value="Get Location" class="btn btn-primary" required>
+					<p id="locVal" ></p>
+					<div class="form-control" style="display: none;">
+						<input type="file" id="file" name="pic" placeholder="Component Picture" capture="environment" accept="image/*" required>
+					</div>
+					<div class="form-control cam-container">
+						<div class="form-control cam" onclick="document.getElementById('file').click()">
+							<img src="camera_icon.png">
+						</div>
+						<div class="form-control image-container" id="bloc" style="display: none;">
+							<img id="img" src="">
+						</div>
+					</div>
+					<input type="hidden" id="componentId" value="<%=id%>">
+					<input type="hidden" id="latitude" value="">
+					<input type="hidden" id="longitude" value="">
+					<input type="submit" id="sub" name="submit" value="Sumbit" class="btn btn-primary">
+				</form>
+			</div>
+			<input type="hidden" name="b64" value="" id="b64">
+		</div>
+	</section>
+	</div>
+	<div id="loading" style="display: none;">
+		<h1>Please wait while page is loading</h1>
+	</div>
+
+	<script>
+		document.getElementById('complaints').addEventListener('click', e => {
+			window.location.replace('/complaints')
+		})
+	</script>
+
+	<script>
+		var inp = document.getElementById("file")//.addEventListener("change",readFile)
+		inp.addEventListener("change", function() {
+			if(this.files && this.files[0]) {
+				let uri = window.URL.createObjectURL(inp.files[0]);
+				var im = document.getElementById("img")
+				im.src = uri;
+				let di = document.getElementById('bloc');
+				di.style["display"] = "inline-block";
+				var FR = new FileReader()
+				FR.addEventListener("load", function(e) {
+					// console.log(e.target.result)
+					document.getElementById("b64").value = e.target.result
+					// console.log
+				})
+				FR.readAsDataURL(this.files[0])
+			}
+		})
+	</script>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+
+	<script>
+	// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyDXqiBHQggKFDDJQF5yJ24YJR5RI9M_UD8",
+			authDomain: "innate-might-285613.firebaseapp.com",
+			projectId: "innate-might-285613",
+			storageBucket: "gs://innate-might-285613.appspot.com",
+			messagingSenderId: "735355390056",
+			appId: "1:735355390056:web:a97d898e81477e9d5c53dd"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+
+	<script src="/db.js" ></script>
+
+</body>
+</html>
