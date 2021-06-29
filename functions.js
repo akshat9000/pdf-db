@@ -1,14 +1,21 @@
 const axios = require('axios')
+const url = "https://ipinfo.io/json?token=425707346e742c"
 
-const getLoc = async (url) => {
-    const userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
-    axios.get(url,{
-        headers: {
-            'User-Agent': userAgent
-        }
+// const loc = async () => {
+//     const request = await fetch("https://ipinfo.io/json?token=425707346e742c")
+//     const json = await request.json()
+    
+//     console.log(jsonResponse.ip, jsonResponse.country)
+// }
+
+// loc()
+
+axios.get(url)
+    .then(data => {
+        // return data.json()
+        console.log(data.data.loc)
     })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-}
-
-module.exports = getLoc
+    // .then(loc => {
+    //     console.log(loc.ip, loc.country)
+    // })
+    .catch(e => console.log(e))

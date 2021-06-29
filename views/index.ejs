@@ -2,13 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Home | EYE-D-LUGGAGE | <%= id %></title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
-	<!-- <script type="text/javascript" src="../public/form.js"></script> -->
-	<!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/ip-geolocation-api-jquery-sdk@1.1.0/ipgeolocation.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -44,9 +41,6 @@
 			<div class="showcase-form card">
 				<h2>Register component</h2>
 				<form action="/<%=id%>/about" method="get">
-					<!-- <div class="form-control">
-						<input type="text" name="name" placeholder="Component Name" required>
-					</div> -->
 					<div class="form-control">
 						<label for="type" style="padding: 0 3px; font-size: 16px; font-weight: 700;">Component Type</label>
 						<select name="type" id="type" class="select-control">
@@ -65,8 +59,7 @@
 					<div class="form-control">
 						<textarea placeholder="Comments" id="comments" name="comments"></textarea>
 					</div>
-					<input type="button" id="locate" name="locate" value="Get Location" class="btn btn-primary" required>
-					<p id="locVal" ></p>
+					<p id="locVal"></p>
 					<div class="form-control" style="display: none;">
 						<input type="file" id="file" name="pic" placeholder="Component Picture" capture="environment" accept="image/*" required>
 					</div>
@@ -123,6 +116,24 @@
 	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 
+	// <script>
+	// 	// const axios = require('axios')
+	// 	const func = () => {
+	// 		const url = "https://ipinfo.io/json?token=425707346e742c"
+	// 		axios.get(url)
+	// 		.then(data => {
+	// 			// return data.json()
+	// 			console.log(data.data.loc)
+	// 		})
+	// 		// .then(loc => {
+	// 		//     console.log(loc.ip, loc.country)
+	// 		// })
+	// 		.catch(e => console.log(e))
+	// 	}
+
+	// 	document.getElementById('locate').addEventListener('click', func())
+	// </script>
+
 	<script>
 	// Your web app's Firebase configuration
 		var firebaseConfig = {
@@ -136,8 +147,8 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);
 	</script>
-
-	<script src="/db.js" ></script>
+	<script src="/funcs.js"></script>
+	// <script src="/db.js" ></script>
 
 </body>
 </html>

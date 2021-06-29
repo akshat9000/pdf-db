@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const firebase = require('./fbdb')
-// const { getDoc } = require('./functions')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -17,18 +16,6 @@ app.set('view engine','ejs')
 const firestore = firebase.firestore()
 
 const port = process.env.PORT || 5000
-
-const getDoc = async (data, id) => {  
-    data.forEach(doc => {
-        //     // console.log(doc.id,doc.data())
-        // const reqDoc
-        var obj = doc.data()
-        if(obj.id === id) {
-            // console.log(obj)
-            return obj
-        }
-    })
-}
 
 app.get('/complaints', (req,res) => {
     res.render('complaints')
@@ -57,7 +44,7 @@ app.get('/:id/about/:componentType/:company', async (req,res,next) => {
                     res.status(404).send('No such company found in records')
                     console.log('line 57 - no such company')
                     firestore.collection('Data').doc(id).delete()
-                        .then(() => console.log('file Deletes'))
+                        .then(() => console.log('file Deleted'))
                 }
             })
             .then(datat => {

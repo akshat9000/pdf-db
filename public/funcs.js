@@ -23,9 +23,9 @@ _ipgeolocation.getGeolocation(handleResponse, api_key);
 
 submit.addEventListener("click", e => {
     e.preventDefault();
-    alert('somn')
+    // alert('somn')
     try {
-        console.log('*******************************')
+        // console.log('*******************************')
         // await getLoc(url)
         bod.style['display'] = 'none';
         loading.style['display'] = 'inline-block'
@@ -46,8 +46,8 @@ submit.addEventListener("click", e => {
                     id: id.value,
                     company: company.value.toLowerCase(),
                     comments: comments.value,
-                    // lati: lati.value,
-                    // longi: longi.value
+                    lati: lat2,
+                    longi: long2
                 },{merge: true})
                     .then(() => window.location.replace(`/${id.value}/about/${componentType.value}/${company.value}`))    
                     
@@ -79,28 +79,3 @@ function handleResponse(response) {
         alert('Error getting location, please try again or with a different browser!')
     }
 }
-
-
-
-// function locate() {
-
-//     function success(position) {
-//         lati.value = position.coords.latitude
-//         longi.value = position.coords.longitude
-//         const para = document.getElementById('locVal')
-//         para.innerHTML = `Latitude ${lati.value} and Longitude ${longi.value}`
-//         console.log(lati, longi)
-//     }
-
-//     function error() {
-//         alert('Unable to get your location, Please try later!')
-//     }
-
-//     if(!navigator.geolocation) {
-//         alert('Geolocation not supported!, Please try with a different browser (Chrome) or use a different device!')
-//     } else {
-//         navigator.geolocation.getCurrentPosition(success,error)
-//     }
-// }
-
-// document.getElementById('locate').addEventListener('click', locate)
